@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :chatgpt do
     collection do
       get :choose
+      get :begin
     end
   end
 

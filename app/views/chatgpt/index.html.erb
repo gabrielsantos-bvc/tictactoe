@@ -79,6 +79,21 @@
 
 <% content_for :javascript do %>
   <script type="application/javascript">
+      // $(document).ready(function() {
+      //     $.ajax({
+      //         url: "/chatgpt/begin",
+      //         type: "GET",
+      //         data: {  },
+      //         success: function(data) {
+      //             console.log(data.response);
+      //             $("#responses").append("<p>" + data.response + "</p>");
+      //             var choice = data.response.match(/\d+/g);
+      //             $("#" + choice).html("O");
+      //             $("#" + choice).prop("disabled", true);
+      //         }
+      //     });
+      // });
+
       $(".tictactoe_btn").click(function() {
           var id = $(this).attr("id");
           $(this).html("X");

@@ -4,17 +4,26 @@ class OpenaiService
   def initialize(choice)
     @choice = choice
   end
+
+  def begin
+    create_thread
+    create_assistant
+
+    response = run
+
+    response["content"][0]["text"]["value"]
+  end
   def call
-    if Rails.cache.read("openai_thread_id").nil?
-      create_thread
+    if Rails.cache.read("openai_assistant_id").nil?
       create_assistant
+      create_thread
     end
 
     client.messages.create(
       thread_id: thread,
       parameters: {
         role: "user",
-        content: "I choose #{choice}! Your turn."
+        content: "I choose #{choice}! Your turn. Answer with a move in the format '1'."
       })["id"]
 
     response = run

@@ -3,6 +3,11 @@ class ChatgptController < ApplicationController
 
   end
 
+  def begin
+    response = OpenaiService.new(nil).begin
+    render json: { response: response }
+  end
+
   def choose
     choice = params[:choice]
     result = OpenaiService.new(choice).call
