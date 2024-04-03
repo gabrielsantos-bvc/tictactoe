@@ -1,0 +1,101 @@
+<h1>Playing with Chat GPT</h1>
+
+<div style="width: 400px">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card shadow mb-4">
+        <div class="card-body">
+          <div class="tictactoe_btn" id="1" style="width: 70px; height: 30px; border: 1px solid;cursor: pointer;display: flex;justify-content: center;"></div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card shadow mb-4">
+        <div class="card-body">
+          <div class="tictactoe_btn" id="2" style="width: 70px; height: 30px; border: 1px solid;cursor: pointer;display: flex;justify-content: center;"></div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card shadow mb-4">
+        <div class="card-body">
+          <div class="tictactoe_btn" id="3" style="width: 70px; height: 30px; border: 1px solid;cursor: pointer;display: flex;justify-content: center;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card shadow mb-4">
+        <div class="card-body">
+          <div class="tictactoe_btn" id="4" style="width: 70px; height: 30px; border: 1px solid;cursor: pointer;display: flex;justify-content: center;"></div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card shadow mb-4">
+        <div class="card-body">
+          <div class="tictactoe_btn" id="5" style="width: 70px; height: 30px; border: 1px solid;cursor: pointer;display: flex;justify-content: center;"></div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card shadow mb-4">
+        <div class="card-body">
+          <div class="tictactoe_btn" id="6" style="width: 70px; height: 30px; border: 1px solid;cursor: pointer;display: flex;justify-content: center;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card shadow mb-4">
+        <div class="card-body">
+          <div class="tictactoe_btn" id="7" style="width: 70px; height: 30px; border: 1px solid;cursor: pointer;display: flex;justify-content: center;"></div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card shadow mb-4">
+        <div class="card-body">
+          <div class="tictactoe_btn" id="8" style="width: 70px; height: 30px; border: 1px solid;cursor: pointer;display: flex;justify-content: center;"></div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card shadow mb-4">
+        <div class="card-body">
+          <div class="tictactoe_btn" id="9" style="width: 70px; height: 30px; border: 1px solid;cursor: pointer;display: flex;justify-content: center;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h1>ChatGpt responses</h1>
+<div id="responses">
+
+</div>
+
+<% content_for :javascript do %>
+  <script type="application/javascript">
+      $(".tictactoe_btn").click(function() {
+          var id = $(this).attr("id");
+          $(this).html("X");
+          $(this).prop("disabled", true);
+          $.ajax({
+              url: "/chatgpt/choose?choice=" + id,
+              type: "GET",
+              data: {  },
+              success: function(data) {
+                  console.log(data.choice);
+                  $("#responses").append("<p>" + data.choice + "</p>");
+                  var choice = data.choice.match(/\d+/g);
+                  $("#" + choice).html("O");
+                  $("#" + choice).prop("disabled", true);
+              }
+          });
+      });
+  </script>
+<% end %>
+
