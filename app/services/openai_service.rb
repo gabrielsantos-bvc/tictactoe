@@ -23,7 +23,7 @@ class OpenaiService
       thread_id: thread,
       parameters: {
         role: "user",
-        content: "I choose #{choice}! Your turn. Answer with a move in the format '1'."
+        content: "I choose #{choice}! Your turn. Answer me just with an integer"
       })["id"]
 
     response = run

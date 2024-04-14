@@ -69,3 +69,4 @@ group :test do
 end
 
 gem "ruby-openai"
+gem "uri", "0.10.1"
